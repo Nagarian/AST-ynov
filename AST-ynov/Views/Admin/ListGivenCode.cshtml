@@ -1,0 +1,47 @@
+﻿<div>
+    <h2>Admin : Code d'activation Azure Dreamspark</h2>
+    <div class="wa-spacer">
+        <form action="@Url.Action("ListGivenCode", "Admin")" method="post">
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" placeholder="Email">
+                <input type="password" class="form-control" name="password" placeholder="password">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="wa-button wa-button-primary">Valider</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<h2>Code déjà utilisé</h2>
+<table class="table table-striped wa-spacer">
+    <thead>
+        <tr>
+            <td>Etudiant</td>
+            <td>Token</td>
+            <td>Demandé à</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var token in ViewBag.DistributedTokens as List<Token>)
+        {
+            <tr>
+                <td>@token.User.Email</td>
+                <td>@token.Token1</td>
+                <td>@token.User.CreatedAt</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Code disponible</h2>
+<table class="table table-striped wa-spacer">
+    <tbody>
+        @foreach (var token in ViewBag.AvailableTokens as List<Token>)
+        {
+            <tr>
+                <td>@token.Token1</td>
+            </tr>
+        }
+    </tbody>
+</table>
